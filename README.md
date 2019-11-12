@@ -1,7 +1,7 @@
 # spring-boot-starter-thrift
 thrift快速启动
 ## 入门
-### provider:  
+### Provider:  
 application.yml
 ```yml
 server:
@@ -27,7 +27,7 @@ public class HelloAgentImpl implements HelloAgent.Iface {
     }
 }
 ```
-### client:  
+### Client:  
 application.yml
 ```yml
 server:
