@@ -1,4 +1,4 @@
-package com.dqw.thrift.service;
+package com.dqw.thrift.provider;
 
 import org.springframework.stereotype.Component;
 

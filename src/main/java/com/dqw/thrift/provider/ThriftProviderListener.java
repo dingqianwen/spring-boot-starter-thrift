@@ -1,4 +1,4 @@
-package com.dqw.thrift.service;
+package com.dqw.thrift.provider;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.thrift.TBaseAsyncProcessor;
@@ -89,7 +89,7 @@ public class ThriftProviderListener implements ApplicationListener<ContextRefres
                 } else {
                     serviceName = bean.getKey();
                 }
-                log.info("Register thrift service,name:{}", serviceName);
+                log.info("Register thrift provider,name:{}", serviceName);
                 //注册服务接口
                 processor.registerProcessor(serviceName, (TProcessor) newInstance);
             }
@@ -99,7 +99,7 @@ public class ThriftProviderListener implements ApplicationListener<ContextRefres
             processorArgs.minWorkerThreads(thriftProviderProperties.getMinThreads());
             processorArgs.maxWorkerThreads(thriftProviderProperties.getMaxThreads());
             TServer server = new TThreadPoolServer(processorArgs);
-            log.info("Thrift service started successfully,port:{}", thriftProviderProperties.getPort());
+            log.info("Thrift provider started successfully,port:{}", thriftProviderProperties.getPort());
             server.serve();
         } catch (Exception e) {
             throw new RuntimeException(e);

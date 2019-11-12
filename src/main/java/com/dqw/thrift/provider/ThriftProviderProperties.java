@@ -1,4 +1,4 @@
-package com.dqw.thrift.service;
+package com.dqw.thrift.provider;
 
 import lombok.Data;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -15,8 +15,8 @@ import org.springframework.stereotype.Component;
  */
 @Data
 @Component
-@ConfigurationProperties(prefix = "thrift.service.config")
-@ConditionalOnProperty(name = "thrift.service.enabled", havingValue = "true")
+@ConfigurationProperties(prefix = "thrift.provider.config")
+@ConditionalOnProperty(name = "thrift.provider.enabled", havingValue = "true")
 public class ThriftProviderProperties {
     private int port;
     private int minThreads;
