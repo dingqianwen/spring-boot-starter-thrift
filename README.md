@@ -42,7 +42,7 @@ thrift:
           host: localhost
 ```
 java:
-```
+```java
 @Slf4j
 @RestController
 public class HelloClientController {
