@@ -1,5 +1,5 @@
 # spring-boot-starter-thrift
-thrift快速启动
+Thrift快速启动
 ## 入门
 ### Provider:  
 application.yml
