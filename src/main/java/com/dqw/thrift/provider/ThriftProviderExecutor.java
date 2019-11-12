@@ -10,13 +10,8 @@ import org.apache.thrift.server.TThreadPoolServer;
 import org.apache.thrift.transport.TServerSocket;
 import org.apache.thrift.transport.TServerTransport;
 import org.apache.thrift.transport.TTransportFactory;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationListener;
-import org.springframework.context.event.ContextRefreshedEvent;
-import org.springframework.stereotype.Component;
 
-import javax.annotation.Resource;
 import java.lang.reflect.Constructor;
 import java.util.Map;
 
@@ -25,26 +20,21 @@ import java.util.Map;
  * 〈〉
  *
  * @author 丁乾文
- * @create 2019/11/5
+ * @create 2019/11/12
  * @since 1.0.0
  */
 @Slf4j
-@Component
-@ConditionalOnBean(ThriftProviderProperties.class)
-public class ThriftProviderListener implements ApplicationListener<ContextRefreshedEvent> {
-    @Resource
-    private ThriftProviderProperties thriftProviderProperties;
+public class ThriftProviderExecutor implements Runnable {
     private ApplicationContext applicationContext;
+    private ThriftProviderProperties thriftProviderProperties;
 
-    /**
-     * 当spring容器初始化完毕后,开始初始化Thrift
-     *
-     * @param contextRefreshedEvent contextRefreshedEvent
-     */
+    ThriftProviderExecutor(ApplicationContext applicationContext, ThriftProviderProperties thriftProviderProperties) {
+        this.applicationContext = applicationContext;
+        this.thriftProviderProperties = thriftProviderProperties;
+    }
+
     @Override
-    public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
-        log.info("Ready to load Thrift!");
-        this.applicationContext = contextRefreshedEvent.getApplicationContext();
+    public void run() {
         loadThrift();
     }
 
@@ -84,8 +74,8 @@ public class ThriftProviderListener implements ApplicationListener<ContextRefres
                 //服务名称,如果serviceName不为空,使用注解的name作为服务名称,否则使用默认类名首字母小写为服务名称
                 ThriftProvider annotation = bean.getValue().getClass().getAnnotation(ThriftProvider.class);
                 String serviceName;
-                if (!"".equals(annotation.serviceName())) {
-                    serviceName = annotation.serviceName();
+                if (!"".equals(annotation.providerName())) {
+                    serviceName = annotation.providerName();
                 } else {
                     serviceName = bean.getKey();
                 }

@@ -19,9 +19,9 @@ import java.lang.annotation.*;
 public @interface ThriftProvider {
     /**
      * 自定义服务名称
-     * 如果serviceName不为空,使用注解的name作为服务名称,否则使用默认类名首字母小写为服务名称
+     * 如果providerName不为空,使用注解的name作为服务名称,否则使用默认类名首字母小写为服务名称
      *
      * @return 服务名称
      */
-    String serviceName() default "";
+    String providerName() default "";
 }

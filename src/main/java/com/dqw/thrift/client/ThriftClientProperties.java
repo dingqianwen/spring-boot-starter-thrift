@@ -23,7 +23,7 @@ public class ThriftClientProperties {
     private Map<String, Instances> instances;
 
     @Data
-    public static class Instances {
+    static class Instances {
         private Integer port;
         private String host;
     }

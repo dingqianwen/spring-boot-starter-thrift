@@ -32,7 +32,7 @@ public @interface ThriftClient {
      * 此服务的名称为:helloAgentImpl
      * <p>
      * 例如服务提供者:
-     * <@ThriftProvider(serviceName="helloAgent")>
+     * <@ThriftProvider(providerName="helloAgent")>
      * public class HelloAgentImpl implements HelloAgent.Iface {
      * }
      * 此服务的名称为:helloAgent
@@ -40,5 +40,5 @@ public @interface ThriftClient {
      *
      * @return String
      */
-    String serviceName();
+    String providerName();
 }

@@ -8,7 +8,7 @@ server:
   port: 9000
 
 thrift:
-  service:
+  provider:
     enabled: true
     config:
       port: 10000
@@ -47,7 +47,7 @@ java:
 @RestController
 public class HelloClientController {
 
-    @ThriftClient(instances = "helloInstances", serviceName = "helloAgentImpl")
+    @ThriftClient(instances = "helloInstances", providerName = "helloAgentImpl")
     private HelloAgent.Client helloClient;
 
     @RequestMapping(value = "/hello")
@@ -64,7 +64,7 @@ public class HelloClientController {
 public @interface ThriftProvider {
     /**
      * 自定义服务名称
-     * 如果serviceName不为空,使用注解的name作为服务名称,否则使用默认类名首字母小写为服务名称
+     * 如果providerName不为空,使用注解的providerName作为服务名称,否则使用默认类名首字母小写为服务名称
      *
      * @return 服务名称
      */
@@ -91,7 +91,7 @@ public @interface ThriftClient {
      * 此服务的名称为:helloAgentImpl
      * <p>
      * 例如服务提供者:
-     * <@ThriftProvider(serviceName="helloAgent")>
+     * <@ThriftProvider(providerName="helloAgent")>
      * public class HelloAgentImpl implements HelloAgent.Iface {
      * }
      * 此服务的名称为:helloAgent
@@ -99,6 +99,6 @@ public @interface ThriftClient {
      *
      * @return String
      */
-    String serviceName();
+    String providerName();
 }
 ```

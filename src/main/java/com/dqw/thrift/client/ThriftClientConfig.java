@@ -86,7 +86,7 @@ public class ThriftClientConfig {
             }
             TSocket transport = new TSocket(instances.getHost(), instances.getPort());
             TBinaryProtocol protocol = new TBinaryProtocol(transport);
-            TMultiplexedProtocol tMultiplexedProtocol = new TMultiplexedProtocol(protocol, thriftClient.serviceName());
+            TMultiplexedProtocol tMultiplexedProtocol = new TMultiplexedProtocol(protocol, thriftClient.providerName());
             String fieldTypeName = field.getType().getName();
             Class<?> fieldTypeClass = Class.forName(fieldTypeName);
             Constructor<?> constructor = fieldTypeClass.getDeclaredConstructors()[0];
