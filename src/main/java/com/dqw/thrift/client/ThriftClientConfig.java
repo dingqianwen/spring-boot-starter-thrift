@@ -92,7 +92,7 @@ public class ThriftClientConfig {
             Constructor<?> constructor = fieldTypeClass.getDeclaredConstructors()[0];
             //属性对象
             Object clientObj = constructor.newInstance(tMultiplexedProtocol);
-
+            //创建代理对象
             Object thriftClientProxy = proxyThriftClient(clientObj, transport, fieldTypeClass, tMultiplexedProtocol);
             //赋值生成的代理对象
             field.set(value, thriftClientProxy);
