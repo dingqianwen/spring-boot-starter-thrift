@@ -1,5 +1,7 @@
 # spring-boot-starter-thrift
 Thrift快速启动
+
+## 此项目年代久远，待删除！
 ## 入门
 ### Provider:  
 application.yml
